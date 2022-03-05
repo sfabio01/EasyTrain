@@ -87,6 +87,16 @@ class HomePage extends ConsumerWidget {
                 ref.read(solutionsProvider.notifier).getSolutions();
               },
               headerVisible: false,
+              daysOfWeekStyle: DaysOfWeekStyle(
+                weekendStyle: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: calendarTextColor),
+                weekdayStyle: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: calendarTextColor),
+              ),
               calendarStyle: CalendarStyle(
                 defaultTextStyle: Theme.of(context)
                     .textTheme
