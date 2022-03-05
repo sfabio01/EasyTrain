@@ -99,7 +99,7 @@ class FavoriteRoutePage extends ConsumerWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
-                                  .copyWith(color: calendarTextColor),
+                                  .copyWith(color: errorColor),
                               textAlign: TextAlign.center,
                             ),
                           TextButton(
@@ -108,7 +108,13 @@ class FavoriteRoutePage extends ConsumerWidget {
                                   .read(solutionsProvider.notifier)
                                   .getSolutions();
                             },
-                            child: const Text("RICARICA"),
+                            child: Text(
+                              "RICARICA",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(color: primaryBlue),
+                            ),
                           ),
                         ],
                       ),
