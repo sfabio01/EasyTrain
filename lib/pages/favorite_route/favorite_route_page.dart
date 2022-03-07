@@ -17,10 +17,8 @@ class FavoriteRoutePage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: darkBlue,
-        title: Text(
-          "${route.departure.getOrElse(() => "PARTENZA")} - ${route.destination.getOrElse(() => "ARRIVO")}",
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
+        elevation: 0.0,
+        title: const Text("EasyTrain"),
         actions: [
           IconButton(
             onPressed: () {
@@ -40,6 +38,27 @@ class FavoriteRoutePage extends ConsumerWidget {
       ),
       body: Column(
         children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            decoration: const BoxDecoration(
+              color: darkBlue,
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(28.0)),
+              boxShadow: [
+                BoxShadow(blurRadius: 4.0),
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "${route.departure.getOrElse(() => "")} - ${route.destination.getOrElse(() => "")}",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TableCalendar(
