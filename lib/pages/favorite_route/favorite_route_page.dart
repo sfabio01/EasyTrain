@@ -24,11 +24,18 @@ class FavoriteRoutePage extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
+              ref.read(routeProvider.notifier).reverseDirection();
+            },
+            icon: const Icon(Icons.swap_horiz_rounded),
+            tooltip: "INVERTI DIREZIONE",
+          ),
+          IconButton(
+            onPressed: () {
               ref.read(calendarProvider.notifier).changeDay(DateTime.now());
             },
             icon: const Icon(Icons.today_outlined),
             tooltip: "ADESSO",
-          )
+          ),
         ],
       ),
       body: Column(

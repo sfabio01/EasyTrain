@@ -28,6 +28,12 @@ class RouteNotifier extends StateNotifier<RouteState> {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
   }
+
+  void reverseDirection() {
+    state = RouteState(state.destination, state.departure);
+    updatePreferences("departure", state.departure.getOrElse(() => ""));
+    updatePreferences("destination", state.destination.getOrElse(() => ""));
+  }
 }
 
 class RouteState {
