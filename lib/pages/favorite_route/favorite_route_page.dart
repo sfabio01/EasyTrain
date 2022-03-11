@@ -47,18 +47,21 @@ class FavoriteRoutePage extends ConsumerWidget {
           preferredSize: const Size.fromHeight(48.0),
           child: Padding(
             padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  child: Text(
-                    "${route.departure.getOrElse(() => "")} - ${route.destination.getOrElse(() => "")}",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      "${route.departure.getOrElse(() => "")} - ${route.destination.getOrElse(() => "")}",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      maxLines: 1,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                 ),
               ],
