@@ -16,7 +16,7 @@ class FavoriteRoutePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: darkBlue,
-        elevation: 0.0,
+        elevation: 6.0,
         title: const Text("EasyTrain"),
         actions: [
           IconButton(
@@ -41,20 +41,13 @@ class FavoriteRoutePage extends ConsumerWidget {
             tooltip: "ADESSO",
           ),
         ],
-      ),
-      body: Column(
-        children: [
-          Container(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(24.0))),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(48.0),
+          child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
-            decoration: const BoxDecoration(
-              color: darkBlue,
-              borderRadius:
-                  BorderRadius.vertical(bottom: Radius.circular(28.0)),
-              boxShadow: [
-                BoxShadow(blurRadius: 4.0, offset: Offset(0, 2.0)),
-              ],
-            ),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -71,8 +64,12 @@ class FavoriteRoutePage extends ConsumerWidget {
               ],
             ),
           ),
+        ),
+      ),
+      body: Column(
+        children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: TableCalendar(
               focusedDay: selectedDate,
               selectedDayPredicate: (day) {
