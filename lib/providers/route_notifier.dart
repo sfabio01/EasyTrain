@@ -29,6 +29,10 @@ class RouteNotifier extends StateNotifier<RouteState> {
     prefs.setString(key, value);
   }
 
+  void reset() {
+    state = RouteState.initial();
+  }
+
   void reverseDirection() {
     state = RouteState(state.destination, state.departure);
     updatePreferences("departure", state.departure.getOrElse(() => ""));

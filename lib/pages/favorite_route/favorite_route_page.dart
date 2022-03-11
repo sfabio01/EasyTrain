@@ -15,7 +15,6 @@ class FavoriteRoutePage extends ConsumerWidget {
     final route = ref.watch(routeProvider);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: darkBlue,
         elevation: 0.0,
         title: const Text("EasyTrain"),
@@ -29,6 +28,13 @@ class FavoriteRoutePage extends ConsumerWidget {
           ),
           IconButton(
             onPressed: () {
+              ref.read(routeProvider.notifier).reset();
+            },
+            icon: const Icon(Icons.edit_rounded),
+            tooltip: "CAMBIA TRATTA",
+          ),
+          IconButton(
+            onPressed: () {
               ref.read(calendarProvider.notifier).changeDay(DateTime.now());
             },
             icon: const Icon(Icons.today_outlined),
@@ -39,7 +45,8 @@ class FavoriteRoutePage extends ConsumerWidget {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
             decoration: const BoxDecoration(
               color: darkBlue,
               borderRadius:
@@ -52,9 +59,14 @@ class FavoriteRoutePage extends ConsumerWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "${route.departure.getOrElse(() => "")} - ${route.destination.getOrElse(() => "")}",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                Expanded(
+                  child: Text(
+                    "${route.departure.getOrElse(() => "")} - ${route.destination.getOrElse(() => "")}",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -185,7 +197,7 @@ class FavoriteRoutePage extends ConsumerWidget {
                                                   .substring(0, 2) ==
                                               "00"
                                           ? "${solutions[index].duration.substring(3, 5)} minuti"
-                                          : "${solutions[index].duration[1]} ore, ${solutions[index].duration.substring(3, 5)} minuti"),
+                                          : "${solutions[index].duration[1]}h, ${solutions[index].duration.substring(3, 5)} minuti"),
                                   if (solutions[index].delay.isNotEmpty)
                                     ConcatText(
                                         title: "RITARDO",
