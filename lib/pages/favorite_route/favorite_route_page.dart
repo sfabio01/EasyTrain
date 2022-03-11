@@ -52,7 +52,7 @@ class FavoriteRoutePage extends ConsumerWidget {
               borderRadius:
                   BorderRadius.vertical(bottom: Radius.circular(28.0)),
               boxShadow: [
-                BoxShadow(blurRadius: 4.0),
+                BoxShadow(blurRadius: 4.0, offset: Offset(0, 2.0)),
               ],
             ),
             child: Row(
@@ -91,11 +91,11 @@ class FavoriteRoutePage extends ConsumerWidget {
                 weekendStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(color: calendarTextColor),
+                    .copyWith(color: calendarTextColor, fontSize: 14.0),
                 weekdayStyle: Theme.of(context)
                     .textTheme
                     .bodyMedium!
-                    .copyWith(color: calendarTextColor),
+                    .copyWith(color: calendarTextColor, fontSize: 14.0),
               ),
               calendarStyle: CalendarStyle(
                 defaultTextStyle: Theme.of(context)
@@ -161,10 +161,24 @@ class FavoriteRoutePage extends ConsumerWidget {
                       itemCount: solutions.length,
                       itemBuilder: (context, index) => Column(
                         children: [
-                          Card(
-                            color: primaryBlue,
-                            child: Padding(
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
                               padding: const EdgeInsets.all(12.0),
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4.0)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 4.0, offset: Offset(0, 2.0)),
+                                ],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    primaryBlue,
+                                    darkBlue,
+                                  ],
+                                ),
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -208,42 +222,36 @@ class FavoriteRoutePage extends ConsumerWidget {
                           ),
                           if (index == solutions.length - 1 &&
                               !solutionsState.isLast)
-                            GestureDetector(
-                              onTap: () {
+                            TextButton(
+                              onPressed: () {
                                 ref
                                     .read(solutionsProvider.notifier)
                                     .getNextSolutions();
                               },
-                              child: Card(
-                                color: lightBlue,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.arrow_downward_rounded,
-                                        color: textColor,
-                                        size: 16.0,
-                                      ),
-                                      Text(
-                                        "TRENI SUCCESSIVI",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                                      const Icon(
-                                        Icons.arrow_downward_rounded,
-                                        color: textColor,
-                                        size: 16.0,
-                                      ),
-                                    ],
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Icons.arrow_downward_rounded,
+                                    color: primaryBlue,
+                                    size: 16.0,
                                   ),
-                                ),
+                                  Text(
+                                    "TRENI SUCCESSIVI",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(color: primaryBlue),
+                                  ),
+                                  const Icon(
+                                    Icons.arrow_downward_rounded,
+                                    color: primaryBlue,
+                                    size: 16.0,
+                                  ),
+                                ],
                               ),
-                            )
+                            ),
                         ],
                       ),
                     ),

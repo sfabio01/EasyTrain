@@ -16,17 +16,18 @@ class MyApp extends StatelessWidget {
       title: 'EasyTrain',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: "SourceSansPro",
         primaryColor: primaryBlue,
         primaryColorDark: darkBlue,
         primaryColorLight: lightBlue,
         errorColor: errorColor,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w700, color: textColor),
+              fontSize: 20, fontWeight: FontWeight.w700, color: textColor),
           bodyMedium: TextStyle(
-              fontSize: 14, fontWeight: FontWeight.w700, color: textColor),
+              fontSize: 18, fontWeight: FontWeight.w600, color: textColor),
           bodySmall: TextStyle(
-              fontSize: 12, fontWeight: FontWeight.w400, color: textColor),
+              fontSize: 16, fontWeight: FontWeight.w300, color: textColor),
         ),
       ),
       home: const SplashPage(),
