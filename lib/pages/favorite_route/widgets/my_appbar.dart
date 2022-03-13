@@ -32,11 +32,17 @@ class MyAppBar extends ConsumerWidget implements PreferredSizeWidget {
           tooltip: "CAMBIA TRATTA",
         ),
         IconButton(
-          onPressed: () {
-            ref.read(calendarProvider.notifier).changeDay(DateTime.now());
+          onPressed: () async {
+            var time = await showTimePicker(
+              context: context,
+              initialTime: TimeOfDay.now(),
+            );
+            if (time != null) {
+              ref.read(calendarProvider.notifier).changeTime(time);
+            }
           },
-          icon: const Icon(Icons.today_outlined),
-          tooltip: "ADESSO",
+          icon: const Icon(Icons.schedule_rounded),
+          tooltip: "ORARIO",
         ),
       ],
       shape: const RoundedRectangleBorder(

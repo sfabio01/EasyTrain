@@ -7,7 +7,6 @@ class StationsNotifier extends StateNotifier<StationsState> {
   StationsNotifier() : super(StationsState.initial());
 
   void init(StationType type) async {
-    print("STATION NOTIFIER INIT");
     state = StationsState("", none(), true, "", type);
 
     var either = await fetchStations("", type);

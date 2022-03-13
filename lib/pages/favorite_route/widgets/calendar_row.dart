@@ -20,8 +20,7 @@ class CalendarRow extends ConsumerWidget {
       calendarFormat: CalendarFormat.week,
       onFormatChanged: (_) {},
       onDaySelected: (selectedDay, focusedDay) {
-        ref.read(calendarProvider.notifier).changeDay(selectedDay);
-        ref.read(solutionsProvider.notifier).getSolutions();
+        ref.read(calendarProvider.notifier).changeDateTime(selectedDay);
       },
       headerVisible: false,
       daysOfWeekStyle: DaysOfWeekStyle(
