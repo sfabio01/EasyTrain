@@ -1,6 +1,7 @@
 import 'package:easytrain/colors.dart';
 import 'package:easytrain/pages/favorite_route/widgets/calendar_row.dart';
 import 'package:easytrain/pages/favorite_route/widgets/error_text.dart';
+import 'package:easytrain/pages/favorite_route/widgets/first_solution_card.dart';
 import 'package:easytrain/pages/favorite_route/widgets/my_appbar.dart';
 import 'package:easytrain/pages/favorite_route/widgets/solution_card.dart';
 import 'package:easytrain/providers/providers.dart';
@@ -35,8 +36,14 @@ class FavoriteRoutePage extends ConsumerWidget {
                       itemCount: solutions.length,
                       itemBuilder: (context, index) => Column(
                         children: [
+                          if (index == 0)
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: FirstSolutionCard(solutions[index]),
+                            ),
                           Padding(
-                            padding: const EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 8.0),
                             child: SolutionCard(solutions[index]),
                           ),
                           if (index == solutions.length - 1 &&
