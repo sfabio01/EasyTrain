@@ -1,13 +1,16 @@
+import 'package:easytrain/api/start_mobility.dart';
 import 'package:easytrain/colors.dart';
 import 'package:easytrain/models/solution.dart';
+import 'package:easytrain/providers/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SolutionCard extends StatelessWidget {
+class SolutionCard extends ConsumerWidget {
   final Solution solution;
   const SolutionCard(this.solution, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.all(12.0),
       decoration: const BoxDecoration(
@@ -25,9 +28,22 @@ class SolutionCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            solution.trainName,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                solution.trainName,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              solution.crowding != -1
+                  ? Icon(Icons.group,
+                      color: solution.crowding < 50
+                          ? Colors.green
+                          : solution.crowding < 80
+                              ? Colors.yellow
+                              : Colors.red)
+                  : Container(),
+            ],
           ),
           Text(
             "DIRETTO A " + solution.direction,
@@ -46,6 +62,15 @@ class SolutionCard extends StatelessWidget {
                   : "${solution.duration[1]}h, ${solution.duration.substring(3, 5)} minuti"),
           if (solution.delay.isNotEmpty)
             ConcatText(title: "RITARDO", value: solution.delay),
+          if (solution.change != "0")
+            ConcatText(title: "CAMBI", value: solution.change),
+          if (ref.read(routeProvider).destination.getOrElse(() => '') ==
+                  'TREVIGLIO' &&
+              getNextS016Di(solution.arrivalTime.substring(0, 5)) != null)
+            ConcatText(
+              title: "PROSSIMO BUS",
+              value: getNextS016Di(solution.arrivalTime.substring(0, 5))!,
+            ),
         ],
       ),
     );

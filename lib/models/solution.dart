@@ -7,6 +7,8 @@ class Solution {
   final String arrivalTime;
   final String duration;
   final String delay;
+  final String change;
+  final int crowding;
 
   Solution({
     required this.trainName,
@@ -15,6 +17,8 @@ class Solution {
     required this.arrivalTime,
     required this.duration,
     required this.delay,
+    required this.change,
+    required this.crowding,
   });
 
   Solution copyWith({
@@ -24,6 +28,8 @@ class Solution {
     String? arrivalTime,
     String? duration,
     String? delay,
+    String? change,
+    int? crowding,
   }) {
     return Solution(
       trainName: trainName ?? this.trainName,
@@ -32,6 +38,8 @@ class Solution {
       arrivalTime: arrivalTime ?? this.arrivalTime,
       duration: duration ?? this.duration,
       delay: delay ?? this.delay,
+      change: change ?? this.change,
+      crowding: crowding ?? this.crowding,
     );
   }
 
@@ -43,6 +51,8 @@ class Solution {
       'arrivalTime': arrivalTime,
       'duration': duration,
       'delay': delay,
+      'change': change,
+      'crowding': crowding,
     };
   }
 
@@ -54,6 +64,8 @@ class Solution {
       arrivalTime: map['arrivalTime'] ?? '',
       duration: map['duration'] ?? '',
       delay: map['delay'] ?? '',
+      change: map['change'] ?? '',
+      crowding: map['crowding'] ?? '',
     );
   }
 
@@ -77,7 +89,9 @@ class Solution {
         other.departureTime == departureTime &&
         other.arrivalTime == arrivalTime &&
         other.duration == duration &&
-        other.delay == delay;
+        other.delay == delay &&
+        other.change == change &&
+        other.crowding == crowding;
   }
 
   @override
@@ -87,6 +101,8 @@ class Solution {
         departureTime.hashCode ^
         arrivalTime.hashCode ^
         duration.hashCode ^
-        delay.hashCode;
+        delay.hashCode ^
+        change.hashCode ^
+        crowding.hashCode;
   }
 }

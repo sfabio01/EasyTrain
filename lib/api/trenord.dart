@@ -38,6 +38,8 @@ Future<Either<String, List<Solution>>> fetchSolutions(
         arrivalTime: sol['arr_time'],
         duration: sol['duration'],
         delay: sol['delay'] ?? '',
+        change: sol['change'],
+        crowding: sol['journey_list'][0]['train']['average_crowding'] ?? -1,
       ));
     }
     return right(solutions);
