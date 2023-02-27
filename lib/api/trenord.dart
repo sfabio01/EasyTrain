@@ -26,7 +26,13 @@ Future<Either<String, List<Solution>>> fetchSolutions(
     },
   );
   try {
-    final res = await http.get(uri);
+    final res = await http.get(
+      uri,
+      headers: {
+        'user-agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.56'
+      },
+    );
     final jsonData = json.decode(res.body);
     List<Solution> solutions = [];
     for (var sol in jsonData) {
@@ -62,8 +68,15 @@ Future<Either<String, List<String>>> fetchStations(
     },
   );
   try {
-    final res = await http.get(uri);
+    final res = await http.get(
+      uri,
+      headers: {
+        'user-agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.56'
+      },
+    );
     final jsonData = json.decode(res.body);
+    print(jsonData);
     List<String> stations = [];
     for (var s in jsonData) {
       stations.add(s['name']);
