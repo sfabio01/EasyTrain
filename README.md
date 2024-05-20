@@ -1,10 +1,9 @@
-# easytrain
+# EasyTrain
 
-A new Flutter project.
+A Flutter app I made for fun. It lets you easily check the train timetable of your preferred route, including delays and crowding. It only works with Trenord trains.
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
+The app is not available in the stores. You need to download and build the project to install the app on your device. 
 
 A few resources to get you started if this is your first Flutter project:
 
